@@ -58,8 +58,10 @@ jobs:
             use_temp_key "Secret BALADI_KEYSTORE_PASSWORD is missing (add it under Secrets or Variables)."
             exit 0
           fi
-          # Remove spaces and line breaks that sneak in when copying the long key text
-          cleaned=$(printf '%s' "$KEYSTORE_BASE64" | tr -d ' \t\r\n')
+          # The key is the longest unbroken run of key characters in what was pasted;
+          # this ignores labels, spaces or extra lines copied along with it by accident.
+          cleaned=$(printf '%s' "$KEYSTORE_BASE64" | tr -c 'A-Za-z0-9+/=' '\n' \
+            | awk '{ if (length($0) > length(best)) best = $0 } END { print best }')
           if ! printf '%s' "$cleaned" | base64 -d > "$ks" 2>/dev/null; then
             use_temp_key "Secret BALADI_KEYSTORE_BASE64 is damaged (it should be one long line, copied completely, length 2836 characters; yours is ${#cleaned})."
             exit 0
