@@ -25,7 +25,7 @@ jobs:
           java-version: '17'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
         with:
           gradle-version: '8.11.1'
 
@@ -46,16 +46,38 @@ jobs:
           KEY_ALIAS: ${{ secrets.BALADI_KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.BALADI_KEY_PASSWORD }}
         run: |
-          if [ -n "$KEYSTORE_BASE64" ]; then
-            echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/baladi-release.jks"
-            echo "BALADI_KEYSTORE_PATH=$RUNNER_TEMP/baladi-release.jks" >> "$GITHUB_ENV"
-            echo "BALADI_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD" >> "$GITHUB_ENV"
-            echo "BALADI_KEY_ALIAS=$KEY_ALIAS" >> "$GITHUB_ENV"
-            echo "BALADI_KEY_PASSWORD=$KEY_PASSWORD" >> "$GITHUB_ENV"
-            echo "Release signing key found."
-          else
-            echo "::warning::No signing key in GitHub Secrets. Using a temporary key; you will need to uninstall before each update."
+          ks="$RUNNER_TEMP/baladi-release.jks"
+          use_temp_key() {
+            echo "::warning::$1 The APK will be signed with a temporary key (you must uninstall the app before installing each new build)."
+          }
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            use_temp_key "Secret BALADI_KEYSTORE_BASE64 is missing."
+            exit 0
           fi
+          if [ -z "$KEYSTORE_PASSWORD" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASSWORD" ]; then
+            [ -z "$KEYSTORE_PASSWORD" ] && echo "::warning::Secret BALADI_KEYSTORE_PASSWORD is missing."
+            [ -z "$KEY_ALIAS" ] && echo "::warning::Secret BALADI_KEY_ALIAS is missing."
+            [ -z "$KEY_PASSWORD" ] && echo "::warning::Secret BALADI_KEY_PASSWORD is missing."
+            use_temp_key "Some signing secrets are missing."
+            exit 0
+          fi
+          # Remove spaces and line breaks that sneak in when copying the long key text
+          cleaned=$(printf '%s' "$KEYSTORE_BASE64" | tr -d ' \t\r\n')
+          if ! printf '%s' "$cleaned" | base64 -d > "$ks" 2>/dev/null; then
+            use_temp_key "Secret BALADI_KEYSTORE_BASE64 is damaged (it should be one long line, copied completely, length 2836 characters; yours is ${#cleaned})."
+            exit 0
+          fi
+          if ! keytool -list -keystore "$ks" -storepass "$KEYSTORE_PASSWORD" -alias "$KEY_ALIAS" > /dev/null 2>&1; then
+            use_temp_key "The signing key could not be opened. Check BALADI_KEYSTORE_PASSWORD and BALADI_KEY_ALIAS."
+            exit 0
+          fi
+          {
+            echo "BALADI_KEYSTORE_PATH=$ks"
+            echo "BALADI_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD"
+            echo "BALADI_KEY_ALIAS=$KEY_ALIAS"
+            echo "BALADI_KEY_PASSWORD=$KEY_PASSWORD"
+          } >> "$GITHUB_ENV"
+          echo "Release signing key found and verified."
 
       - name: Build the APK
         run: gradle :app:assembleRelease --stacktrace
@@ -66,7 +88,7 @@ jobs:
           cp app/build/outputs/apk/release/app-release.apk "out/Baladi-build-${{ github.run_number }}.apk"
 
       - name: Upload the APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Baladi-APK-build-${{ github.run_number }}
           path: out/*.apk
