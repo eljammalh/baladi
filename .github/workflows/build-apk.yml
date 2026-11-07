@@ -66,15 +66,28 @@ jobs:
             use_temp_key "Secret BALADI_KEYSTORE_BASE64 is damaged (it should be one long line, copied completely, length 2836 characters; yours is ${#cleaned})."
             exit 0
           fi
-          if ! keytool -list -keystore "$ks" -storepass "$KEYSTORE_PASSWORD" -alias "$KEY_ALIAS" > /dev/null 2>&1; then
-            use_temp_key "The signing key could not be opened. Check BALADI_KEYSTORE_PASSWORD and BALADI_KEY_ALIAS."
+          # Try the password exactly as pasted, trimmed, and every word in it,
+          # so a label or space copied along with it does not break signing.
+          found_pw=""; found_alias=""
+          candidates=$( { printf '%s\n' "$KEYSTORE_PASSWORD"; printf '%s' "$KEYSTORE_PASSWORD" | tr -d ' \t\r\n'; echo; printf '%s' "$KEYSTORE_PASSWORD" | tr -c 'A-Za-z0-9' '\n'; } | awk 'length($0) >= 6 && !seen[$0]++')
+          aliases=$( { printf '%s\n' "$KEY_ALIAS" | tr -d ' \t\r'; echo baladi; } | awk 'length($0) > 0 && !seen[$0]++')
+          while IFS= read -r pw; do
+            while IFS= read -r al; do
+              if keytool -list -keystore "$ks" -storepass "$pw" -alias "$al" > /dev/null 2>&1; then
+                found_pw="$pw"; found_alias="$al"; break 2
+              fi
+            done <<< "$aliases"
+          done <<< "$candidates"
+          if [ -z "$found_pw" ]; then
+            use_temp_key "The signing key could not be opened with BALADI_KEYSTORE_PASSWORD. Re-paste the 20-character password (nothing else) and run again."
             exit 0
           fi
+          echo "::add-mask::$found_pw"
           {
             echo "BALADI_KEYSTORE_PATH=$ks"
-            echo "BALADI_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD"
-            echo "BALADI_KEY_ALIAS=$KEY_ALIAS"
-            echo "BALADI_KEY_PASSWORD=$KEY_PASSWORD"
+            echo "BALADI_KEYSTORE_PASSWORD=$found_pw"
+            echo "BALADI_KEY_ALIAS=$found_alias"
+            echo "BALADI_KEY_PASSWORD=$found_pw"
           } >> "$GITHUB_ENV"
           echo "Release signing key found and verified."
 
