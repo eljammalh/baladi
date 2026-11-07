@@ -42,9 +42,9 @@ jobs:
       - name: Prepare the signing key
         env:
           KEYSTORE_BASE64: ${{ secrets.BALADI_KEYSTORE_BASE64 }}
-          KEYSTORE_PASSWORD: ${{ secrets.BALADI_KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.BALADI_KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.BALADI_KEY_PASSWORD }}
+          KEYSTORE_PASSWORD: ${{ secrets.BALADI_KEYSTORE_PASSWORD || vars.BALADI_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.BALADI_KEY_ALIAS || vars.BALADI_KEY_ALIAS || 'baladi' }}
+          KEY_PASSWORD: ${{ secrets.BALADI_KEY_PASSWORD || vars.BALADI_KEY_PASSWORD || secrets.BALADI_KEYSTORE_PASSWORD || vars.BALADI_KEYSTORE_PASSWORD }}
         run: |
           ks="$RUNNER_TEMP/baladi-release.jks"
           use_temp_key() {
@@ -54,11 +54,8 @@ jobs:
             use_temp_key "Secret BALADI_KEYSTORE_BASE64 is missing."
             exit 0
           fi
-          if [ -z "$KEYSTORE_PASSWORD" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASSWORD" ]; then
-            [ -z "$KEYSTORE_PASSWORD" ] && echo "::warning::Secret BALADI_KEYSTORE_PASSWORD is missing."
-            [ -z "$KEY_ALIAS" ] && echo "::warning::Secret BALADI_KEY_ALIAS is missing."
-            [ -z "$KEY_PASSWORD" ] && echo "::warning::Secret BALADI_KEY_PASSWORD is missing."
-            use_temp_key "Some signing secrets are missing."
+          if [ -z "$KEYSTORE_PASSWORD" ]; then
+            use_temp_key "Secret BALADI_KEYSTORE_PASSWORD is missing (add it under Secrets or Variables)."
             exit 0
           fi
           # Remove spaces and line breaks that sneak in when copying the long key text
