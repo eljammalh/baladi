@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Baladi mark: a young sprout rising from a wheat-coloured field -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Field -->
+    <path
+        android:fillColor="#E9C877"
+        android:pathData="M31,69 Q54,61 77,69 L77,74 Q54,66 31,74 Z" />
+
+    <!-- Stem -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M52.4,45 L55.6,45 L55.6,67 L52.4,67 Z" />
+
+    <!-- Left leaf -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,54 C45,54 37,48 35,38 C46,38 53,44 54,54 Z" />
+
+    <!-- Right leaf -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,47 C55,37 62,30 75,30 C74,41 66,47 54,47 Z" />
+
+</vector>

@@ -1,0 +1,82 @@
+name: Build Baladi APK
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+
+      - name: Download the Tajawal Arabic font
+        run: |
+          mkdir -p app/src/main/res/font
+          base="https://raw.githubusercontent.com/google/fonts/main/ofl/tajawal"
+          curl -fsSL --retry 3 -o app/src/main/res/font/tajawal_regular.ttf   "$base/Tajawal-Regular.ttf"
+          curl -fsSL --retry 3 -o app/src/main/res/font/tajawal_medium.ttf    "$base/Tajawal-Medium.ttf"
+          curl -fsSL --retry 3 -o app/src/main/res/font/tajawal_bold.ttf      "$base/Tajawal-Bold.ttf"
+          curl -fsSL --retry 3 -o app/src/main/res/font/tajawal_extrabold.ttf "$base/Tajawal-ExtraBold.ttf"
+          ls -la app/src/main/res/font
+
+      - name: Prepare the signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.BALADI_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.BALADI_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.BALADI_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.BALADI_KEY_PASSWORD }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/baladi-release.jks"
+            echo "BALADI_KEYSTORE_PATH=$RUNNER_TEMP/baladi-release.jks" >> "$GITHUB_ENV"
+            echo "BALADI_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD" >> "$GITHUB_ENV"
+            echo "BALADI_KEY_ALIAS=$KEY_ALIAS" >> "$GITHUB_ENV"
+            echo "BALADI_KEY_PASSWORD=$KEY_PASSWORD" >> "$GITHUB_ENV"
+            echo "Release signing key found."
+          else
+            echo "::warning::No signing key in GitHub Secrets. Using a temporary key; you will need to uninstall before each update."
+          fi
+
+      - name: Build the APK
+        run: gradle :app:assembleRelease --stacktrace
+
+      - name: Name the APK
+        run: |
+          mkdir -p out
+          cp app/build/outputs/apk/release/app-release.apk "out/Baladi-build-${{ github.run_number }}.apk"
+
+      - name: Upload the APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Baladi-APK-build-${{ github.run_number }}
+          path: out/*.apk
+          retention-days: 30
+
+      - name: Publish a GitHub Release (version tags only)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: out/*.apk

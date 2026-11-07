@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Baladi</string>
+
+    <!-- Bottom tabs -->
+    <string name="tab_home">Home</string>
+    <string name="tab_favorites">Favorites</string>
+    <string name="tab_post">Add product</string>
+    <string name="tab_messages">Messages</string>
+    <string name="tab_profile">Account</string>
+
+    <!-- Home -->
+    <string name="search_hint">Search olive oil, honey, local eggs…</string>
+    <string name="section_categories">Categories</string>
+    <string name="section_near_you">Near you</string>
+    <string name="section_fresh_today">Fresh today</string>
+    <string name="action_see_all">See all</string>
+    <string name="season_now">In season now</string>
+    <string name="season_subtitle">Buy fresh, straight from farms and homes</string>
+    <string name="all_of_jordan">All of Jordan</string>
+    <string name="choose_governorate">Choose governorate</string>
+    <string name="choose_governorate_hint">We\'ll show you products available in your area</string>
+    <string name="empty_area_title">Nothing here yet</string>
+    <string name="empty_area_message">No products have been posted in this governorate yet. Try another one or browse all of Jordan.</string>
+    <string name="action_change_area">Change governorate</string>
+
+    <!-- Categories -->
+    <string name="cat_vegetables">Vegetables</string>
+    <string name="cat_fruits">Fruits</string>
+    <string name="cat_eggs_poultry">Eggs &amp; Poultry</string>
+    <string name="cat_dairy">Dairy &amp; Cheese</string>
+    <string name="cat_honey">Honey</string>
+    <string name="cat_olive_oil">Olive Oil &amp; Olives</string>
+    <string name="cat_herbs_spices">Za\'atar &amp; Herbs</string>
+    <string name="cat_grains_legumes">Grains &amp; Legumes</string>
+    <string name="cat_bread">Bread &amp; Baked</string>
+    <string name="cat_home_meals">Home Cooking</string>
+    <string name="cat_pickles_preserves">Pickles &amp; Preserves</string>
+    <string name="cat_sweets">Sweets</string>
+    <string name="cat_plants">Plants &amp; Seedlings</string>
+    <string name="cat_other">Other</string>
+    <string name="cat_more">More</string>
+    <string name="all_categories_title">All categories</string>
+    <string name="empty_category_title">No products in this category yet</string>
+    <string name="empty_category_message">Be the first to list your products here soon.</string>
+
+    <!-- Governorates -->
+    <string name="gov_amman">Amman</string>
+    <string name="gov_irbid">Irbid</string>
+    <string name="gov_zarqa">Zarqa</string>
+    <string name="gov_balqa">Balqa</string>
+    <string name="gov_mafraq">Mafraq</string>
+    <string name="gov_jerash">Jerash</string>
+    <string name="gov_ajloun">Ajloun</string>
+    <string name="gov_madaba">Madaba</string>
+    <string name="gov_karak">Karak</string>
+    <string name="gov_tafilah">Tafilah</string>
+    <string name="gov_maan">Ma\'an</string>
+    <string name="gov_aqaba">Aqaba</string>
+
+    <!-- Listing card -->
+    <string name="currency_jod">JOD</string>
+    <string name="price_per_unit">/ %1$s</string>
+    <string name="unit_kg">kg</string>
+    <string name="unit_piece">piece</string>
+    <string name="unit_dozen">dozen</string>
+    <string name="unit_box">box</string>
+    <string name="unit_liter">liter</string>
+    <string name="unit_jar">jar</string>
+    <string name="unit_bundle">bundle</string>
+    <string name="tag_organic">Organic</string>
+    <string name="tag_homemade">Homemade</string>
+    <string name="tag_pesticide_free">Pesticide-free</string>
+    <string name="label_delivery">Delivery</string>
+    <string name="location_and_distance">%1$s · %2$s km</string>
+    <string name="time_just_now">Just now</string>
+    <plurals name="time_hours_ago">
+        <item quantity="one">%d hour ago</item>
+        <item quantity="other">%d hours ago</item>
+    </plurals>
+    <plurals name="time_days_ago">
+        <item quantity="one">%d day ago</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
+
+    <!-- Sample products (demo only, replaced by real listings later) -->
+    <string name="sample_olive_oil">Extra virgin olive oil, first press</string>
+    <string name="sample_labneh">Homemade baladi labneh</string>
+    <string name="sample_eggs">Fresh free-range eggs</string>
+    <string name="sample_honey">Mountain sidr honey</string>
+    <string name="sample_pomegranate">Red pomegranates from the farm</string>
+    <string name="sample_taboon">Wood-fired taboon bread</string>
+    <string name="sample_makdous">Eggplant makdous with walnuts</string>
+    <string name="sample_zaatar">Ground baladi za\'atar</string>
+    <string name="sample_tomatoes">Baladi tomatoes</string>
+    <string name="sample_freekeh">Local wheat freekeh</string>
+
+    <!-- Season banner: one line per month, January to December -->
+    <string-array name="season_by_month">
+        <item>Citrus, strawberries, spinach and cauliflower</item>
+        <item>Strawberries, citrus, green fava beans and lettuce</item>
+        <item>Green fava beans, peas, strawberries and lettuce</item>
+        <item>Akoub, green almonds, green plums and fava beans</item>
+        <item>Apricots, cherries, grape leaves and faqqous</item>
+        <item>Apricots, peaches, watermelon and zucchini</item>
+        <item>Grapes, figs, watermelon and tomatoes</item>
+        <item>Grapes, figs, prickly pears and baladi tomatoes</item>
+        <item>Grapes, pomegranates, figs and fresh dates</item>
+        <item>Olives, pomegranates, dates and guava</item>
+        <item>New-season olive oil, pomegranates and guava</item>
+        <item>Olive oil, citrus, cabbage and cauliflower</item>
+    </string-array>
+
+    <!-- Favorites / messages / post -->
+    <string name="empty_favorites_title">No favorites yet</string>
+    <string name="empty_favorites_message">Tap the heart on any product to save it here for later.</string>
+    <string name="action_browse_products">Browse products</string>
+    <string name="empty_messages_title">No conversations yet</string>
+    <string name="empty_messages_message">When you message a seller or a buyer messages you, your chats will appear here.</string>
+    <string name="post_title">Add your product</string>
+    <string name="post_empty_title">List your products soon</string>
+    <string name="post_empty_message">Soon you\'ll be able to post your products with photos, prices and descriptions so buyers near you can find them.</string>
+
+    <!-- Map / search -->
+    <string name="map_title">Map</string>
+    <string name="map_coming_title">The map is coming soon</string>
+    <string name="map_coming_message">You\'ll see products near you on a map based on your location.</string>
+    <string name="search_browse_by_category">Browse by category</string>
+    <string name="search_coming_note">Product search and filters are coming soon.</string>
+
+    <!-- Profile -->
+    <string name="profile_guest_title">Welcome to Baladi</string>
+    <string name="profile_guest_message">Sign in to list your products, message sellers and keep your favorites.</string>
+    <string name="profile_sign_in_soon">Sign in (coming soon)</string>
+    <string name="profile_become_seller">Start selling on Baladi</string>
+    <string name="profile_share_app">Share the app</string>
+    <string name="profile_about">About Baladi</string>
+    <string name="profile_version">Version %1$s (%2$d)</string>
+    <string name="share_app_text">Try Baladi: fresh local food straight from Jordanian farmers and home producers.</string>
+    <string name="about_title">About Baladi</string>
+    <string name="about_message">Baladi is a local marketplace that connects you with farmers, growers and families across Jordan, so you can find healthy, local food at a fair price, straight from the people who make it.</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_arabic">العربية</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_theme_system">Match phone settings</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+
+    <!-- Accessibility -->
+    <string name="cd_back">Back</string>
+    <string name="cd_clear">Clear</string>
+    <string name="cd_filters">Filters</string>
+    <string name="cd_open_map">Show on map</string>
+    <string name="cd_add_favorite">Add to favorites</string>
+    <string name="cd_remove_favorite">Remove from favorites</string>
+    <string name="cd_verified_seller">Verified seller</string>
+</resources>

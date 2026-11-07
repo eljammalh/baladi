@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Arabic is the default language of Baladi. English lives in values-en/strings.xml -->
+<resources>
+    <string name="app_name">بلدي</string>
+
+    <!-- Bottom tabs -->
+    <string name="tab_home">الرئيسية</string>
+    <string name="tab_favorites">المفضلة</string>
+    <string name="tab_post">أضف منتج</string>
+    <string name="tab_messages">الرسائل</string>
+    <string name="tab_profile">حسابي</string>
+
+    <!-- Home -->
+    <string name="search_hint">ابحث عن زيت، عسل، بيض بلدي…</string>
+    <string name="section_categories">التصنيفات</string>
+    <string name="section_near_you">قريب منك</string>
+    <string name="section_fresh_today">طازج اليوم</string>
+    <string name="action_see_all">عرض الكل</string>
+    <string name="season_now">في الموسم الآن</string>
+    <string name="season_subtitle">اشترِ طازجاً من المزارع والبيوت مباشرة</string>
+    <string name="all_of_jordan">كل الأردن</string>
+    <string name="choose_governorate">اختر المحافظة</string>
+    <string name="choose_governorate_hint">سنعرض لك المنتجات المتوفرة في منطقتك</string>
+    <string name="empty_area_title">لا توجد منتجات هنا بعد</string>
+    <string name="empty_area_message">لم يُنشر أي منتج في هذه المحافظة حتى الآن. جرّب محافظة أخرى أو تصفح كل الأردن.</string>
+    <string name="action_change_area">تغيير المحافظة</string>
+
+    <!-- Categories -->
+    <string name="cat_vegetables">خضار</string>
+    <string name="cat_fruits">فواكه</string>
+    <string name="cat_eggs_poultry">بيض ودواجن</string>
+    <string name="cat_dairy">ألبان وأجبان</string>
+    <string name="cat_honey">عسل</string>
+    <string name="cat_olive_oil">زيت وزيتون</string>
+    <string name="cat_herbs_spices">زعتر وأعشاب</string>
+    <string name="cat_grains_legumes">حبوب وبقول</string>
+    <string name="cat_bread">خبز ومخبوزات</string>
+    <string name="cat_home_meals">أكل بيتي</string>
+    <string name="cat_pickles_preserves">مخللات ومونة</string>
+    <string name="cat_sweets">حلويات</string>
+    <string name="cat_plants">نباتات وأشتال</string>
+    <string name="cat_other">أخرى</string>
+    <string name="cat_more">المزيد</string>
+    <string name="all_categories_title">كل التصنيفات</string>
+    <string name="empty_category_title">لا توجد منتجات في هذا التصنيف بعد</string>
+    <string name="empty_category_message">كن أول من يعرض منتجاته هنا قريباً.</string>
+
+    <!-- Governorates -->
+    <string name="gov_amman">عمّان</string>
+    <string name="gov_irbid">إربد</string>
+    <string name="gov_zarqa">الزرقاء</string>
+    <string name="gov_balqa">البلقاء</string>
+    <string name="gov_mafraq">المفرق</string>
+    <string name="gov_jerash">جرش</string>
+    <string name="gov_ajloun">عجلون</string>
+    <string name="gov_madaba">مادبا</string>
+    <string name="gov_karak">الكرك</string>
+    <string name="gov_tafilah">الطفيلة</string>
+    <string name="gov_maan">معان</string>
+    <string name="gov_aqaba">العقبة</string>
+
+    <!-- Listing card -->
+    <string name="currency_jod">د.أ</string>
+    <string name="price_per_unit">/ %1$s</string>
+    <string name="unit_kg">كيلو</string>
+    <string name="unit_piece">حبة</string>
+    <string name="unit_dozen">دزينة</string>
+    <string name="unit_box">صندوق</string>
+    <string name="unit_liter">لتر</string>
+    <string name="unit_jar">مرطبان</string>
+    <string name="unit_bundle">ربطة</string>
+    <string name="tag_organic">عضوي</string>
+    <string name="tag_homemade">صناعة بيتية</string>
+    <string name="tag_pesticide_free">بدون مبيدات</string>
+    <string name="label_delivery">توصيل</string>
+    <string name="location_and_distance">%1$s · %2$s كم</string>
+    <string name="time_just_now">الآن</string>
+    <plurals name="time_hours_ago">
+        <item quantity="zero">منذ أقل من ساعة</item>
+        <item quantity="one">منذ ساعة</item>
+        <item quantity="two">منذ ساعتين</item>
+        <item quantity="few">منذ %d ساعات</item>
+        <item quantity="many">منذ %d ساعة</item>
+        <item quantity="other">منذ %d ساعة</item>
+    </plurals>
+    <plurals name="time_days_ago">
+        <item quantity="zero">اليوم</item>
+        <item quantity="one">منذ يوم</item>
+        <item quantity="two">منذ يومين</item>
+        <item quantity="few">منذ %d أيام</item>
+        <item quantity="many">منذ %d يوماً</item>
+        <item quantity="other">منذ %d يوم</item>
+    </plurals>
+
+    <!-- Sample products (demo only, replaced by real listings later) -->
+    <string name="sample_olive_oil">زيت زيتون بكر عصرة أولى</string>
+    <string name="sample_labneh">لبنة بلدية مصنوعة بالبيت</string>
+    <string name="sample_eggs">بيض بلدي طازج</string>
+    <string name="sample_honey">عسل سدر جبلي</string>
+    <string name="sample_pomegranate">رمان أحمر من المزرعة</string>
+    <string name="sample_taboon">خبز طابون على الحطب</string>
+    <string name="sample_makdous">مكدوس باذنجان بالجوز</string>
+    <string name="sample_zaatar">زعتر بلدي مطحون</string>
+    <string name="sample_tomatoes">بندورة بلدية</string>
+    <string name="sample_freekeh">فريكة قمح بلدي</string>
+
+    <!-- Season banner: one line per month, January to December -->
+    <string-array name="season_by_month">
+        <item>حمضيات، فراولة، سبانخ وزهرة</item>
+        <item>فراولة، حمضيات، فول أخضر وخس</item>
+        <item>فول أخضر، بازيلاء، فراولة وخس</item>
+        <item>عكوب، لوز أخضر، جانرك وفول</item>
+        <item>مشمش، كرز، ورق عنب وفقوس</item>
+        <item>مشمش، خوخ، بطيخ وكوسا</item>
+        <item>عنب، تين، بطيخ وبندورة</item>
+        <item>عنب، تين، صبر وبندورة بلدية</item>
+        <item>عنب، رمان، تين وبلح</item>
+        <item>زيتون، رمان، تمر وجوافة</item>
+        <item>زيت زيتون جديد، رمان وجوافة</item>
+        <item>زيت زيتون، حمضيات، ملفوف وزهرة</item>
+    </string-array>
+
+    <!-- Favorites / messages / post -->
+    <string name="empty_favorites_title">لا توجد مفضلات بعد</string>
+    <string name="empty_favorites_message">اضغط على القلب في أي منتج لتحفظه هنا وترجع له بسهولة.</string>
+    <string name="action_browse_products">تصفح المنتجات</string>
+    <string name="empty_messages_title">لا توجد محادثات بعد</string>
+    <string name="empty_messages_message">عندما تراسل بائعاً أو يراسلك مشترٍ، ستظهر المحادثات هنا.</string>
+    <string name="post_title">أضف منتجك</string>
+    <string name="post_empty_title">اعرض منتجاتك قريباً</string>
+    <string name="post_empty_message">قريباً ستتمكن من نشر منتجاتك مع الصور والأسعار والوصف ليصلك الزبائن من منطقتك.</string>
+
+    <!-- Map / search -->
+    <string name="map_title">الخريطة</string>
+    <string name="map_coming_title">الخريطة قادمة قريباً</string>
+    <string name="map_coming_message">سترى المنتجات القريبة منك على الخريطة حسب موقعك.</string>
+    <string name="search_browse_by_category">تصفح حسب التصنيف</string>
+    <string name="search_coming_note">البحث في المنتجات والفلاتر متاحة قريباً.</string>
+
+    <!-- Profile -->
+    <string name="profile_guest_title">أهلاً بك في بلدي</string>
+    <string name="profile_guest_message">سجّل الدخول لتعرض منتجاتك، وتراسل البائعين، وتحفظ مفضلاتك.</string>
+    <string name="profile_sign_in_soon">تسجيل الدخول (قريباً)</string>
+    <string name="profile_become_seller">ابدأ البيع على بلدي</string>
+    <string name="profile_share_app">شارك التطبيق</string>
+    <string name="profile_about">عن بلدي</string>
+    <string name="profile_version">الإصدار %1$s (%2$d)</string>
+    <string name="share_app_text">جرّب تطبيق بلدي: منتجات بلدية طازجة من المزارعين والبيوت الأردنية مباشرة.</string>
+    <string name="about_title">عن بلدي</string>
+    <string name="about_message">بلدي سوق محلي يجمعك مع المزارعين والمنتجين والأسر في الأردن، لتجد طعاماً صحياً وبلدياً وبسعر عادل، مباشرة من صاحبه.</string>
+    <string name="action_ok">حسناً</string>
+
+    <!-- Settings -->
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_language">اللغة</string>
+    <string name="settings_language_arabic">العربية</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_appearance">المظهر</string>
+    <string name="settings_theme_system">حسب إعدادات الهاتف</string>
+    <string name="settings_theme_light">فاتح</string>
+    <string name="settings_theme_dark">داكن</string>
+
+    <!-- Accessibility -->
+    <string name="cd_back">رجوع</string>
+    <string name="cd_clear">مسح</string>
+    <string name="cd_filters">الفلاتر</string>
+    <string name="cd_open_map">عرض على الخريطة</string>
+    <string name="cd_add_favorite">إضافة إلى المفضلة</string>
+    <string name="cd_remove_favorite">إزالة من المفضلة</string>
+    <string name="cd_verified_seller">بائع موثّق</string>
+</resources>
